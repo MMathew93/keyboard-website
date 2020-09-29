@@ -1,0 +1,23 @@
+SET UP NEW ROUTES
+
+1. Set up Registration page with form layout
+    -Add a log in option for Admin to this page?
+        -Admin will be able to Create, Update, and Delete products
+2. Set up general Pages for products
+    -Set it up so that when an admin creates, updates or deletes a product, product pages get corrected
+3. Set up individual pages for specific products
+    -This will display info, price, stock, buy now button, etc
+
+
+
+%%%%%%%%%BUGS // ISSUES%%%%%%%%%%%%
+1.Can't access views within subfolder `Product_Main-Page` inside Views folder
+2. Navbar is cut off when opening info tab
+    -Navbar dropdowns are open when accessing from hamburger (when screen is small)
+
+
+
+Extras
+++++++++++++++++++++++++++++++++++
+Set up a models detail page
+    -Implememt fade in to get specific details on each model of keyboard(Type-S, Classic, Hybrid)

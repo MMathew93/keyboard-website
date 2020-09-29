@@ -10,8 +10,22 @@
         </b-navbar-item>
       </template>
       <template slot="end">
-        <b-navbar-item href="#">
-          Shop
+        <b-navbar-dropdown label="Products">
+          <b-navbar-item tag="router-link" :to="{ path: '/pro-hybrid-type-s' }">
+            Pro HYBRID Type-S
+          </b-navbar-item>
+          <b-navbar-item tag="router-link" :to="{ path: '/pro-hybrid' }">
+            Pro HYBRID
+          </b-navbar-item>
+          <b-navbar-item tag="router-link" :to="{ path: '/pro-classic' }">
+            Pro Classic
+          </b-navbar-item>
+          <b-navbar-item tag="router-link" :to="{ path: '/accessories' }">
+            Accessories
+          </b-navbar-item>
+        </b-navbar-dropdown>
+        <b-navbar-item tag="router-link" :to="{ path: '/register' }">
+          Register
         </b-navbar-item>
         <b-navbar-dropdown label="Info">
           <b-navbar-item tag="router-link" :to="{ path: '/about' }">
@@ -21,12 +35,8 @@
             Source Code
           </b-navbar-item>
         </b-navbar-dropdown>
-        <b-navbar-item href="#">
-          Register
-        </b-navbar-item>
       </template>
     </b-navbar>
-    <router-view />
   </div>
 </template>
 
