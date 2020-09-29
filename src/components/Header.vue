@@ -11,19 +11,19 @@
       </template>
       <template slot="end">
         <b-navbar-item href="#">
-          Home
-        </b-navbar-item>
-        <b-navbar-item href="#">
-          Documentation
+          Shop
         </b-navbar-item>
         <b-navbar-dropdown label="Info">
-          <b-navbar-item href="#">
-            About
+          <b-navbar-item tag="router-link" :to="{ path: '/about' }">
+            About Us
           </b-navbar-item>
-          <b-navbar-item href="#">
-            Contact
+          <b-navbar-item href="https://github.com/MMathew93/keyboard-website">
+            Source Code
           </b-navbar-item>
         </b-navbar-dropdown>
+        <b-navbar-item href="#">
+          Register
+        </b-navbar-item>
       </template>
     </b-navbar>
     <router-view />
