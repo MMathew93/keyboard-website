@@ -2,25 +2,25 @@
   <div class="register">
     <Header />
     <section>
-      <div class="container">
+      <div class="basic container">
         <h1 class="title">Thank you!</h1>
         <h2 class="subtitle">
           Fill out the form and receive a personalized thank you email just for
           taking the time to check out my silly project!
         </h2>
         <div class="form container">
-          <div class="content names">
+          <div class="field-body">
             <b-field label="First Name">
-              <b-input placeholder="Enter your first name..." />
-            </b-field>
-            <b-field label="Last Name">
-              <b-input placeholder="Enter your last name..." />
-            </b-field>
-          </div>
-          <div class="content address">
-            <b-field label="Street Address">
               <b-input />
             </b-field>
+            <b-field label="Last Name">
+              <b-input />
+            </b-field>
+          </div>
+          <b-field label="Street Address">
+            <b-input />
+          </b-field>
+          <div class="field-body">
             <b-field label="City">
               <b-input />
             </b-field>
@@ -79,8 +79,10 @@
                 <option value="WY">Wyoming</option>
               </b-select>
             </b-field>
+          </div>
+          <div class="field-body">
             <b-field label="Zip Code">
-              <b-input type="number" min="5" pattern="[0-9]{5}" />
+              <b-input type="type" pattern="[0-9]{5}" />
             </b-field>
             <b-field label="Country">
               <b-select value="United States">
@@ -89,12 +91,7 @@
             </b-field>
           </div>
           <b-field label="Email">
-            <b-input
-              type="email"
-              placeholder="Enter your email address..."
-              maxlength="30"
-            >
-            </b-input>
+            <b-input v-model="email" type="email" maxlength="30"></b-input>
           </b-field>
           <div class="buttons">
             <b-button type="is-primary">Primary</b-button>
@@ -119,4 +116,33 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.title,
+.subtitle {
+  color: white;
+  text-align: center;
+}
+
+.basic {
+  margin: 10rem auto auto;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  color: rgb(153, 145, 131);
+}
+
+.select,
+.select select {
+  width: 100%;
+}
+
+.buttons {
+  justify-content: center;
+  margin-bottom: 5px;
+}
+</style>

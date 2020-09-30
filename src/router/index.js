@@ -41,7 +41,7 @@ const routes = [
     path: "/pro-classic",
     name: "Classic",
     component: () =>
-      import(/* webpackChunkName: "pro-classic */ "../views/Classic.vue")
+      import(/* webpackChunkName: "pro-classic" */ "../views/Classic.vue")
   },
   {
     path: "/accessories",
