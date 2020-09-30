@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <Header />
-    <section class="hero">
-      <div class="hero-body landing"></div>
+    <section class="hero land">
+      <div class="hero-body"></div>
     </section>
     <Footer />
   </div>
@@ -23,15 +23,18 @@ export default {
 </script>
 
 <style scoped>
-.hero {
+.land {
+  width: 100vw;
+  height: 81vh;
   display: flex;
-  align-items: center;
-  min-height: 80vh;
+  justify-content: center;
 }
 
 .hero-body {
-  padding: 0;
-  min-width: 100vw;
+  background-image: url("../assets/HHKB_Header_Landing.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 .landing {
