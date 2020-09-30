@@ -1,7 +1,6 @@
 <template>
   <div class="type-s">
     <Header />
-    <P> Hello </P>
     <Footer />
   </div>
 </template>

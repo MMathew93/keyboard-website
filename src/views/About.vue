@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <Header />
-    <section class="content section">
+    <section class="content">
       <div class="container details">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
