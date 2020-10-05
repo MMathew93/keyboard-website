@@ -8,24 +8,24 @@
           Fill out the form and receive a personalized thank you email just for
           taking the time to check out my silly project!
         </h2>
-        <div class="form container">
+        <form class="form container" @submit="submitForm">
           <div class="field-body">
             <b-field label="First Name">
-              <b-input />
+              <b-input v-model="firstname" />
             </b-field>
             <b-field label="Last Name">
-              <b-input />
+              <b-input v-model="lastname" />
             </b-field>
           </div>
           <b-field label="Street Address">
-            <b-input />
+            <b-input v-model="street" />
           </b-field>
           <div class="field-body">
             <b-field label="City">
-              <b-input />
+              <b-input v-model="city" />
             </b-field>
             <b-field label="State">
-              <b-select placeholder="Choose state">
+              <b-select v-model="state" placeholder="Choose state">
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
                 <option value="AZ">Arizona</option>
@@ -82,10 +82,10 @@
           </div>
           <div class="field-body">
             <b-field label="Zip Code">
-              <b-input type="type" pattern="[0-9]{5}" />
+              <b-input v-model="zip" type="type" pattern="[0-9]{5}" />
             </b-field>
             <b-field label="Country">
-              <b-select value="United States">
+              <b-select v-model="country" value="United States">
                 <option value="United States">United States</option>
               </b-select>
             </b-field>
@@ -93,10 +93,10 @@
           <b-field label="Email">
             <b-input v-model="email" type="email" maxlength="30"></b-input>
           </b-field>
-          <div class="buttons">
-            <b-button type="is-primary">Primary</b-button>
+          <div class="control buttons">
+            <b-input type="submit" name="submit" value="Submit" />
           </div>
-        </div>
+        </form>
       </div>
     </section>
     <Footer />
@@ -112,6 +112,26 @@ export default {
   components: {
     Header,
     Footer
+  },
+
+  data() {
+    return {
+      firstname: "",
+      lastname: "",
+      street: "",
+      city: "",
+      zip: "",
+      state: "",
+      country: "",
+      email: ""
+    };
+  },
+  methods: {
+    submitForm(e) {
+      e.preventDefault();
+      console.log(this.firstname);
+      console.log(this.email);
+    }
   }
 };
 </script>

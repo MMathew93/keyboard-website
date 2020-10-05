@@ -1,5 +1,3 @@
-SET UP NEW ROUTES
-
 1. Set up Registration page with form layout
     -Add a log in option for Admin to this page?
         -Admin will be able to Create, Update, and Delete products
@@ -15,6 +13,7 @@ SET UP NEW ROUTES
 2. Navbar is cut off when opening info tab
     -Navbar dropdowns are open when accessing from hamburger (when screen is small)
 3. Make Registration page more tight knit on form filling, patterns, rules, etc (zip should only take numbers and be 5 long)
+4. Color Registration submit button
 
 
 Extras
