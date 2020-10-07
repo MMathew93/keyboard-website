@@ -48,6 +48,20 @@ const routes = [
     name: "Accessories",
     component: () =>
       import(/* webpackChunkName: "accessories" */ "../views/Accessories.vue")
+  },
+  {
+    path: "/admin",
+    name: "Admin",
+    component: () =>
+      import(/* webpackChunkName: "accessories" */ "../views/Admin.vue")
+  },
+  {
+    path: "/test",
+    name: "test",
+    component: () =>
+      import(
+        /* webpackChunkName: "accessories" */ "../components/productModal.vue"
+      )
   }
 ];
 

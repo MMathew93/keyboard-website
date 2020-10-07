@@ -14,7 +14,7 @@
     -Navbar dropdowns are open when accessing from hamburger (when screen is small)
 3. Make Registration page more tight knit on form filling, patterns, rules, etc (zip should only take numbers and be 5 long)
 4. Color Registration submit button
-
+5. Controller folder in server was removed. Anti-Pattern? Seperates business logic from the route, but was having issues. A route is a controller
 
 Extras
 ++++++++++++++++++++++++++++++++++
