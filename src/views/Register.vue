@@ -93,9 +93,9 @@
           <b-field label="Email">
             <b-input v-model="email" type="email" maxlength="30"></b-input>
           </b-field>
-          <div class="control buttons">
-            <b-input type="submit" name="submit" value="Submit" />
-          </div>
+          <b-button native-type="submit" name="submit" value="Submit"
+            >Submit</b-button
+          >
         </form>
       </div>
     </section>
@@ -161,8 +161,8 @@ export default {
   width: 100%;
 }
 
-.buttons {
-  justify-content: center;
-  margin-bottom: 5px;
+.button {
+  margin: 15px auto;
+  width: auto;
 }
 </style>

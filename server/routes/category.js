@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const Category = require("../models/category");
+const { body, validationResult } = require("express-validator/check");
+const { sanitizeBody } = require("express-validator/filter");
 
 // get all categorys
 router.get("/", async (req, res) => {

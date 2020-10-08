@@ -38,7 +38,10 @@ export default {
       .then(response => {
         //this.products = response.data;
         this.products = response.data.filter(
-          obj => obj.name !== "Pro HYBRID Type-S" && obj.name !== "Pro HYBRID" && obj.name !== "Pro Classic"
+          obj =>
+            obj.name !== "Pro HYBRID Type-S" &&
+            obj.name !== "Pro HYBRID" &&
+            obj.name !== "Pro Classic"
         );
       })
       .catch(error => {

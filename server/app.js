@@ -6,12 +6,12 @@ var logger = require("morgan");
 var cors = require("cors");
 let mongoose = require("mongoose");
 let mongoDB =
-  "mongoDBstuffherepls";
+  "mongoDBpasswordstuff";
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 let db = mongoose.connection;
 
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
-var indexRouter = require("./routes/index");
+var categoryRouter = require("./routes/category");
 var productRouter = require("./routes/product");
 
 const app = express();
@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
+app.use("/categories", categoryRouter);
 app.use("/products", productRouter);
 
 // catch 404 and forward to error handler

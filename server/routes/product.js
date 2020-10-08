@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
 });
 
 //Display Product Create form on GET
-router.get("/", async (req, res, next) => {
+router.get("/", async (req, res) => {
   try {
     const category = await Category.find({});
     return res.json(category);
@@ -31,9 +31,60 @@ router.get("/", async (req, res, next) => {
 });
 
 //Handle Product Create on POST
-exports.product_create_post = function(req, res) {
-  res.send("NOT IMPLEMENTED");
-};
+router.post("/", async (req, res) => {
+  try {
+    if (!(req.body.category instanceof Array)) {
+      if (typeof req.body.category === "undefined") req.body.category = [];
+      else req.body.category = new Array(req.body.category);
+    } else {
+      return res.status(400).json({ error: "invalid category?" });
+    }
+    //validate fields
+    body("name", "Name must not be empty.")
+      .trim()
+      .isLength({ min: 1 }),
+      body("description", "Description must not be empty.")
+        .trim()
+        .isLength({ min: 1 }),
+      body("price", "Price must not be empty and must be a numerical value.")
+        .trim()
+        .isLength({ min: 1 }),
+      body(
+        "numberInStock",
+        "Number in Stock must not be empty and must be a numerical value"
+      )
+        .trim()
+        .isLength({ min: 1 }),
+      //sanitize fields using wildcard
+      sanitizeBody("*").escape(),
+      sanitizeBody("category.*").escape(),
+      //process request after validation erros from a request
+      async (req, res) => {
+        const errors = validationResult(req);
+
+        let product = new Product({
+          name: req.body.name,
+          description: req.body.description,
+          price: req.body.price,
+          numberInStock: req.body.numberInStock,
+          category: req.body.category
+        });
+
+        if (!errors.isEmpty()) {
+          //There are errors. Render form again with sanitized values//error messages.
+          res
+            .status(400)
+            .json({ error: "There are errors on the form, try again." });
+        } else {
+          //Data from form is valid, save the product
+          const savedProduct = await product.save();
+          return res.status(201).json(savedProduct.toJSON());
+        }
+      };
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 // Display Product delete form on GET.
 exports.product_delete_get = function(req, res) {
@@ -41,9 +92,11 @@ exports.product_delete_get = function(req, res) {
 };
 
 // Handle product delete on POST.
-exports.product_delete_post = function(req, res) {
-  res.send("NOT IMPLEMENTED: product delete POST");
-};
+router.delete("/:id", async (req, res) => {
+  const products = await Product.find({});
+  await products.deleteOne({ _id: new products.ObjectID(req.params.id) });
+  res.status(200).send();
+});
 
 // Display product update form on GET.
 exports.product_update_get = function(req, res) {
