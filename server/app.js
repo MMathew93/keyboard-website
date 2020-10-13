@@ -6,7 +6,7 @@ var logger = require("morgan");
 var cors = require("cors");
 let mongoose = require("mongoose");
 let mongoDB =
-  "mongoDBpasswordstuff";
+  "";
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 let db = mongoose.connection;
 

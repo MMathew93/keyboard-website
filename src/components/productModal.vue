@@ -4,20 +4,20 @@
     <section>
       <div class="basic container">
         <h1 class="title">Create Product</h1>
-        <form class="form container" @submit="addProduct">
+        <form class="form container" @submit="submission">
           <b-field label="Name">
-            <b-input v-model="name" />
+            <b-input v-model="product.name" />
           </b-field>
           <b-field label="Description">
             <b-input
-              v-model="details"
+              v-model="product.description"
               maxlength="500"
               type="textarea"
             ></b-input>
           </b-field>
           <div class="field-body">
             <b-field label="Category">
-              <b-select v-model="category" placeholder="Choose...">
+              <b-select v-model="product.category" placeholder="Choose...">
                 <option
                   v-for="category in categoryData"
                   :key="category._id"
@@ -28,10 +28,15 @@
               </b-select>
             </b-field>
             <b-field label="Price">
-              <b-input v-model="price" />
+              <b-input v-model="product.price" />
             </b-field>
             <b-field label="Number In Stock">
-              <b-input v-model="numberInStock" type="number" min="0" max="99" />
+              <b-input
+                v-model="product.numberInStock"
+                type="number"
+                min="0"
+                max="99"
+              />
             </b-field>
           </div>
           <div class="button-box">
@@ -61,27 +66,32 @@ export default {
 
   data() {
     return {
-      name: "",
-      details: "",
-      category: "",
-      price: null,
-      numberInStock: null,
+      product: {
+        name: "",
+        description: "",
+        category: "",
+        price: null,
+        numberInStock: null
+      },
       categoryData: [],
       hidden: true
     };
   },
   methods: {
-    addProduct() {
+    submission() {
+      let newProduct = {
+        name: this.product.name,
+        description: this.product.description,
+        category: this.product.category,
+        price: this.product.price,
+        numberInStock: this.product.numberInStock
+      };
       axios
-        .post("http://localhost:3000/products", {
-          name: this.name,
-          description: this.details,
-          price: this.price,
-          numberInStock: this.numberInStock
-        })
+        .post("http://localhost:3000/products", newProduct)
         .then(response => {
           console.log(response);
-          console.log(response.data);
+          console.log("success");
+          console.log(newProduct);
         })
         .catch(error => {
           console.log(error);

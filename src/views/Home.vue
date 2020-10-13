@@ -28,6 +28,7 @@ export default {
   height: 81vh;
   display: flex;
   justify-content: center;
+  margin: 0;
 }
 
 .hero-body {

@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 const Product = require("../models/product");
 const Category = require("../models/category");
-const { body, validationResult } = require("express-validator/check");
-const { sanitizeBody } = require("express-validator/filter");
+//const { body, validationResult } = require("express-validator/check");
+//const { sanitizeBody } = require("express-validator/filter");
 
 // get all products
 router.get("/", async (req, res) => {
@@ -32,58 +32,16 @@ router.get("/", async (req, res) => {
 
 //Handle Product Create on POST
 router.post("/", async (req, res) => {
-  try {
-    if (!(req.body.category instanceof Array)) {
-      if (typeof req.body.category === "undefined") req.body.category = [];
-      else req.body.category = new Array(req.body.category);
-    } else {
-      return res.status(400).json({ error: "invalid category?" });
-    }
-    //validate fields
-    body("name", "Name must not be empty.")
-      .trim()
-      .isLength({ min: 1 }),
-      body("description", "Description must not be empty.")
-        .trim()
-        .isLength({ min: 1 }),
-      body("price", "Price must not be empty and must be a numerical value.")
-        .trim()
-        .isLength({ min: 1 }),
-      body(
-        "numberInStock",
-        "Number in Stock must not be empty and must be a numerical value"
-      )
-        .trim()
-        .isLength({ min: 1 }),
-      //sanitize fields using wildcard
-      sanitizeBody("*").escape(),
-      sanitizeBody("category.*").escape(),
-      //process request after validation erros from a request
-      async (req, res) => {
-        const errors = validationResult(req);
+  let product = new Product({
+    name: req.body.name,
+    description: req.body.description,
+    price: req.body.price,
+    numberInStock: req.body.numberInStock,
+    category: req.body.category
+  });
 
-        let product = new Product({
-          name: req.body.name,
-          description: req.body.description,
-          price: req.body.price,
-          numberInStock: req.body.numberInStock,
-          category: req.body.category
-        });
-
-        if (!errors.isEmpty()) {
-          //There are errors. Render form again with sanitized values//error messages.
-          res
-            .status(400)
-            .json({ error: "There are errors on the form, try again." });
-        } else {
-          //Data from form is valid, save the product
-          const savedProduct = await product.save();
-          return res.status(201).json(savedProduct.toJSON());
-        }
-      };
-  } catch (error) {
-    console.error(error);
-  }
+  const savedProduct = await product.save();
+  return res.status(201).json(savedProduct.toJSON());
 });
 
 // Display Product delete form on GET.
