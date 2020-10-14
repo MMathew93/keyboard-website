@@ -4,7 +4,7 @@
     <section>
       <div class="basic container">
         <h1 class="title">Create Product</h1>
-        <form class="form container" @submit="submission">
+        <form class="form container">
           <b-field label="Name">
             <b-input v-model="product.name" />
           </b-field>
@@ -40,12 +40,11 @@
             </b-field>
           </div>
           <div class="button-box">
-            <b-button native-type="submit" name="submit" value="Submit"
-              >Submit</b-button
-            >
-            <b-button @click="cancelSubmission">Cancel</b-button>
+            
           </div>
         </form>
+        <b-button native-type="button" @click="submission">Submit</b-button>
+            <b-button @click="cancelSubmission">Cancel</b-button>
       </div>
     </section>
     <Footer />
@@ -82,9 +81,9 @@ export default {
       let newProduct = {
         name: this.product.name,
         description: this.product.description,
-        category: this.product.category,
         price: this.product.price,
-        numberInStock: this.product.numberInStock
+        numberInStock: this.product.numberInStock,
+        category: this.product.category
       };
       axios
         .post("http://localhost:3000/products", newProduct)
@@ -98,11 +97,11 @@ export default {
         });
     },
     cancelSubmission() {
-      this.name = "";
-      this.details = "";
-      this.category = "";
-      this.price = null;
-      this.numberInStock = null;
+      this.product.name = "";
+      this.product.description = "";
+      this.product.category = "";
+      this.product.price = null;
+      this.product.numberInStock = null;
       this.hidden = !!true;
     }
   },
